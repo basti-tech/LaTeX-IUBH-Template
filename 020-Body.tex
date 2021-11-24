@@ -12,7 +12,7 @@ A vector graphic is one where strokes remain strokes even at the highest resolut
 Many tools generate vector-graphics for plots from any data-set. E.g. Plotly (with the use of the Browser-Print), MatPlotLib or even OpenOffice, LibreOffice or MS-Excel.
 
 \section{Literature References}
-Here is an example of a reference with a page-number: \cite[S. 6]{DueckKo:2016}
+Here is an example of a reference with a page-number: \autocite[S. 6]{DueckKo:2016}
 
 
 \section{Pictures}
@@ -20,7 +20,7 @@ Here is an example of a reference with a page-number: \cite[S. 6]{DueckKo:2016}
 \begin{figure}[h]
 \centering
 \includegraphics[width=8cm]{pics/spiral.pdf}
-\caption{A spiral... smooth vector-based with a clean parametrisation! \\ Nothing to do with \cite{Gage:18}}\label{fig:spiral}
+\caption{A spiral... smooth vector-based with a clean parametrisation! \\ Nothing to do with \autocite{Gage:18}}\label{fig:spiral}
 \end{figure}
 \FloatBarrier
 
@@ -41,7 +41,7 @@ Bush & Gardener & Nature-sculptor \\
 Painting & Painter & Interior Design \\
  &  & \\
 \end{tabular}
-\caption[Downgrade and upgrade of job denominations]{Downgrade and Upgrade of job denominations \\ \ \ \ \cite{DueckKo:2016}}
+\caption[Downgrade and upgrade of job denominations]{Downgrade and Upgrade of job denominations \\ \ \ \ \autocite{DueckKo:2016}}
 \label{tab:Downgrade and Upgrade of job denominations}
 \end{table} 
 
@@ -83,13 +83,13 @@ The simplest way to do so is to use the \verb+\verb+ macro which is followed by 
 
 
 \begin{verbatim}
-As we could calculate with \cite{Wolfram_alpha} using 
+As we could calculate with \autocite{Wolfram_alpha} using 
 \verb_integrate 1 / pi e ^ (t/pi) from zero to infinity_.
 \end{verbatim}
 
 which yields: 
 
-As we could calculate with \cite{Wolfram_alpha} using \verb_integrate 1 / pi e ^ (t/pi)_ from zero to infinity.
+As we could calculate with \textcite{Wolfram_Alpha} using \verb_integrate 1 / pi e ^ (t/pi)_ from zero to infinity.
 
 
 The multiline version of this is called \verb+\begin{verbatim}+ and finishes with \verb+\end{verbatim}+.
@@ -97,8 +97,8 @@ The multiline version of this is called \verb+\begin{verbatim}+ and finishes wit
 
 \section{Citation examples}
 
-Monography \citep[][S. 22]{con:infra} 
+Monography \autocite[][S. 22]{con:infra} 
 
-Collection \citep{sammelband} 
+Collection \autocite{sammelband} 
 
-Article \citep{article1}
+Article \autocite{article1}

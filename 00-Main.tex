@@ -1,13 +1,9 @@
 \documentclass[
 11pt, paper=a4,  listof=totocnumbered, % lists are also included in table of contents
-numbers=noendperiod, % Don't add a period at the end of a chapter number
+bibliography=totocnumbered, % add bibliography to toc 
+numbers=noendperiod % Don't add a period at the end of a chapter number
 ]{scrreprt}
 
-    \usepackage{chngcntr}
-    \counterwithout{footnote}{chapter}
-    \counterwithout{figure}{chapter}
-        \counterwithout{table}{chapter}
-    
 % ===============================
 % IUBH Template für Seminar-, Bachelor-, and Master-works
 % -------------------------------
@@ -18,18 +14,32 @@ numbers=noendperiod, % Don't add a period at the end of a chapter number
 % https://komascript.de/faq_float%40addtolist
 \usepackage{scrhack}
 
+% count figures, tables, footnotes without chapter
+\usepackage{chngcntr}
+\counterwithout{footnote}{chapter}
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+
+
 % get custom bibliography style working without prepending [brackets]
-\usepackage{natbib}
-\setcitestyle{aysep={}} % remove comma as delimiter 
+%\usepackage{natbib}
+%\setcitestyle{aysep={}} % remove comma as delimiter 
 
 % breaks line at hyphens (resolves formatting issues in bibliography)
 \usepackage[hyphens]{url}
 
-\usepackage{txfonts} % Use a Times-new-roman open-source clone
+% Use a Times-new-roman open-source clone
+\usepackage{txfonts} 
 
-% if you insist on Arial... then uncomment the following
+% if you insist on Arial-like fonts... then uncomment the following
 %\usepackage{helvet}
 %\renewcommand{\familydefault}{\sfdefault}
+
+% if you want to use real arial you need to use ttf-mscorefonts-installer on linux
+% ttf fonts can be be used via fontspec, but you need to use xelatex
+%\usepackage{fontspec}
+%\setmainfont{Arial}
+%\setsansfont{Arial}
 
 \usepackage{caption}
 \usepackage{float}
@@ -42,7 +52,7 @@ numbers=noendperiod, % Don't add a period at the end of a chapter number
 \addtolength{\footskip}{-0.7cm}% foot larger by 0,7 cm  (Raises the page number)
 
 
-\usepackage[onehalfspacing]{setspace} % line space 1,5
+\usepackage{setspace} % line space
 
 \setlength{\parindent}{6pt} % Indent at start of paragraphs  6pt
 
@@ -60,7 +70,32 @@ numbers=noendperiod, % Don't add a period at the end of a chapter number
 % withpage - the first occurrence's page number is listed too
 \usepackage[withpage]{acronym}
 
-\usepackage[hidelinks]{hyperref} %https://tex.stackexchange.com/questions/823/remove-ugly-borders-around-clickable-cross-references-and-hyperlinks
+%https://tex.stackexchange.com/questions/823/remove-ugly-borders-around-clickable-cross-references-and-hyperlinks, 
+%Hyperrefnames=false when switching between roman and arabic figures to have working links again https://golatex.de/viewtopic.php?t=14989
+\usepackage[hidelinks, hypertexnames=false]{hyperref} 
+
+% new citation guidelines, bibliography with apa 7
+\usepackage[style=apa, backend=biber]{biblatex}
+\addbibresource{biblio.bib}
+
+%script for creating an appendix toc, with koma script https://komascript.de/node/458
+\makeatletter
+\DeclareNewTOC[%
+  owner=\jobname,
+  listname={List of Annexes},% Title
+]{atoc}% file extension (a=appendix, toc=table of contents)
+
+\newcommand*{\useappendixtocs}{%
+  \renewcommand*{\ext@toc}{atoc}%
+}
+\makeatother
+
+\usepackage{xpatch}
+\xapptocmd\appendix{%
+  \useappendixtocs
+  \listofatocs
+}{}{}
+
 
 \begin{document}
 
@@ -73,6 +108,8 @@ numbers=noendperiod, % Don't add a period at the end of a chapter number
 \pagenumbering{Roman} %the intro is counted with roman numbers
 \setcounter{page}{2} %starting with page 2 (page 1 is the titel)
 
+\begin{spacing}{1.5}
+%\setstretch{1.5} %Use 1.5 baseline stretch to get same line spacing as word %https://latex.org/forum/viewtopic.php?t=28685
 % --- too detailed for a seminar but otherwise useful
 %\include{002-BlockingNotice}
 %\include{003-Acknowledgements}
@@ -92,21 +129,25 @@ numbers=noendperiod, % Don't add a period at the end of a chapter number
 \include{020-Body}
 %\include{030-Conclusion}
 
-\appendix 
-
 % ---- Bibliography ----
 %
 % BibTeX users should specify bibliography style 
 % References will then be sorted and formatted in the correct style.
 %
- %\bibliographystyle{alpha}
-\bibliographystyle{iubh}
-\bibliography{biblio}
 
-%\printbibliography[heading=none]
+%IU custom style bibliography
+%\bibliographystyle{iubh}
+%\bibliography{biblio}
 
-%\include{041-Annexes}
+%biblatex for apa7 & spacing 2.0 spacing
+\begin{spacing}{2.0}
+    \printbibliography    
+\end{spacing}
+
+
+\include{041-Annexes}
+
 %\include{042-Glossary}
 \include{070-Pledge}
-
+\end{spacing}
 \end{document}
