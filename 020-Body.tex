@@ -8,7 +8,7 @@ TeXLive: \url{http://tug.org/texlive/}
  
  A good editor is essential. Sometimes combined editors and compilers (e.g. TeXShop) can be really productive. Make sure you learn the use of synchronized navigation then.
 
-A vector graphic is one where strokes remain strokes even at the highest resolutions: e.g. the Figure~\ref{fig:spiral} or the Logo on the \hyperref[titlePage]{Titelblatt} (notice: you can click from here to there).
+A vector graphic is one where strokes remain strokes even at the highest resolutions: e.g. the \autoref{fig:spiral} or the Logo on the \hyperref[titlePage]{Titelblatt} (notice: you can click from here to there).
 Many tools generate vector-graphics for plots from any data-set. E.g. Plotly (with the use of the Browser-Print), MatPlotLib or even OpenOffice, LibreOffice or MS-Excel.
 
 \section{Literature References}
@@ -20,7 +20,7 @@ Here is an example of a reference with a page-number: \autocite[S. 6]{DueckKo:20
 \begin{figure}[h]
 \centering
 \includegraphics[width=8cm]{pics/spiral.pdf}
-\caption{A spiral... smooth vector-based with a clean parametrisation! \\ Nothing to do with \autocite{Gage:18}}\label{fig:spiral}
+\caption{A spiral... smooth vector-based with a clean parametrisation! \\ Nothing to do with \textcite{Gage:18}}\label{fig:spiral}
 \end{figure}
 \FloatBarrier
 
@@ -70,7 +70,7 @@ A formula can be written inline, e.g. as $ \frac{d}{dx}\mbox{arctg}(x) = \frac{1
 
 Notice that formulæ that are centered start bigger (technically, they start in \verb+\displaystyle+) than they start inline (technically, they start in \verb+\textstyle+ all subsequents reductions, e.g. an exponent, goes to \verb+\scriptstyle+ then \verb+\scriptscriptstyle+). Indeed a best effort is made so that inline formulæ do not change the line height which would bother the eye of a reader.
 
-Formulæ can be given a number and a label. Numbering happens automatically with \verb+\begin{equation}+ and \verb+\end{equation}+ and can be avoided if enclosing the formula betwee \verb+\[+ and \verb+\]+. If using the \verb+\label+ macro inside, you can refer automatically to this equation using \verb+\ref{label}+. E.g. Thanks to equation~\ref{arctanderivative} one dare say that:
+Formulæ can be given a number and a label. Numbering happens automatically with \verb+\begin{equation}+ and \verb+\end{equation}+ and can be avoided if enclosing the formula betwee \verb+\[+ and \verb+\]+. If using the \verb+\label+ macro inside, you can refer automatically to this equation using \verb+\ref{label}+. E.g. Thanks to \autoref{arctanderivative} one dare say that:
 
 \begin{equation} \int_0^t \frac{1}{1+x^2} dx = \mbox{arctan}(t) \end{equation}
 
